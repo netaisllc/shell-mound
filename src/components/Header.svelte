@@ -14,10 +14,11 @@
   }
 </style>
 
-<div class="bg-black h-12 w-screen">
+<div class="bg-black h-12 w-screen" data-cy="header">
   {#if $menuIcon}
     <div
       class="menu-icon h-12 w-12 flex justify-center items-center cursor-pointer hover:bg-gray-600"
+      data-cy="menu-icon"
       on:click={() => send(E, MenuShow)}
     >
       <MenuIcon />

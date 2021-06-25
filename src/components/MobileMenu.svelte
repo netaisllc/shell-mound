@@ -3,7 +3,7 @@
   import { MenuHide } from '../lib/menu';
   import { E } from '../lib/statics';
   import { createEventDispatcher } from 'svelte';
-  import { useMobileMenu } from '../stores/app';
+  import { isMobile, useMobileMenu } from '../stores/app';
 
   const send = createEventDispatcher();
 
@@ -28,13 +28,16 @@
   }
 </style>
 
-<div class="menu fixed bg-gray-800 rounded shadow-lg" class:visible>
-  <div class="flex justify-end">
-    <div
-      class="close-icon flex h-12 w-12 justify-end items-center cursor-pointer p-3 text-gray-700"
-      on:click={() => send(E, MenuHide)}
-    >
-      <CloseIcon fill="#ECECEC" />
+{#if $isMobile}
+  <div class="menu fixed bg-gray-800 rounded shadow-lg" class:visible data-cy="mobile-menu">
+    <div class="flex justify-end">
+      <div
+        class="close-icon flex h-12 w-12 justify-end items-center cursor-pointer p-3 text-gray-700"
+        data-cy="mobile-menu-close-icon"
+        on:click={() => send(E, MenuHide)}
+      >
+        <CloseIcon fill="#ECECEC" />
+      </div>
     </div>
   </div>
-</div>
+{/if}

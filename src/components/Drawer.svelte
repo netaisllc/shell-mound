@@ -3,7 +3,7 @@
   import { MenuHide } from '../lib/menu';
   import { E } from '../lib/statics';
   import { createEventDispatcher } from 'svelte';
-  import { useDrawerMenu } from '../stores/app';
+  import { isMobile, useDrawerMenu } from '../stores/app';
 
   const send = createEventDispatcher();
 
@@ -26,13 +26,16 @@
   }
 </style>
 
-<div class="drawer bg-gray-50" class:visible>
-  <div class="flex justify-end">
-    <div
-      class="close-icon flex h-12 w-12 justify-end items-center cursor-pointer p-3 text-gray-400 hover:text-black hover:bg-gray-300"
-      on:click={() => send(E, MenuHide)}
-    >
-      <BackIcon fill="currentColor" />
+{#if !$isMobile}
+  <div class="drawer bg-gray-50" class:visible data-cy="drawer">
+    <div class="flex justify-end">
+      <div
+        class="close-icon flex h-12 w-12 justify-end items-center cursor-pointer p-3 text-gray-400 hover:text-black hover:bg-gray-300"
+        data-cy="drawer-close-icon"
+        on:click={() => send(E, MenuHide)}
+      >
+        <BackIcon fill="currentColor" />
+      </div>
     </div>
   </div>
-</div>
+{/if}

@@ -4,13 +4,14 @@
   "description": "Svelte/Typescript/Tailwind/Snowpack template",
   "main": "index.js",
   "scripts": {
-    "dev": "snowpack dev",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "build": "npm test && npm run check &&snowpack build",
     "check": "svelte-check --diagnostic-sources \"js,svelte\"",
     "check:watch": "svelte-check --watch --diagnostic-sources \"js,svelte\"",
-    "build": "npm test && npm run check &&snowpack build",
-    "serve": "sirv build --maxage 36000"
+    "cyo": "cypress open",
+    "dev": "snowpack dev",
+    "serve": "sirv build --maxage 36000",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [
     "svelte",
@@ -30,11 +31,12 @@
     "@types/jest": "^26.0.23",
     "@types/snowpack-env": "^2.3.3",
     "autoprefixer": "^10.2.6",
-    "babel-jest": "^27.0.2",
-    "jest": "^27.0.4",
+    "babel-jest": "^27.0.5",
+    "cypress": "^7.6.0",
+    "jest": "^27.0.5",
     "postcss": "^8.3.5",
-    "snowpack": "^3.5.9",
-    "svelte": "^3.38.2",
+    "snowpack": "^3.6.2",
+    "svelte": "^3.38.3",
     "svelte-check": "^2.2.0",
     "svelte-jester": "^1.7.0",
     "svelte-preprocess": "^4.7.3",
@@ -43,6 +45,6 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.12",
-    "tailwindcss": "^2.2.2"
+    "tailwindcss": "^2.2.4"
   }
 }
