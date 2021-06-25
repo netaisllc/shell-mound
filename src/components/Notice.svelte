@@ -1,9 +1,17 @@
 <script>
   import { onDestroy } from 'svelte';
-  import { fade } from 'svelte/transition';
-  import { notice } from '../stores/app';
+  import { fly } from 'svelte/transition';
 
-  export let ms = 5000;
+  import { notice, noticeDuration } from '../stores/app';
+  import { NoticeThemes } from '../types/notice';
+
+  import CloseIcon from '../icons/Close.svelte';
+  import InfoIcon from '../icons/Info.svelte';
+  import OkIcon from '../icons/Ok.svelte';
+  import ErrorIcon from '../icons/Error.svelte';
+  import WarningIcon from '../icons/Warning.svelte';
+
+  export let ms = noticeDuration;
   let visible;
   let timeout;
 
@@ -32,46 +40,43 @@
 
 <style>
   div {
-    align-items: center;
-    background-color: #565656;
-    border-radius: 0.2rem;
-    bottom: 1.5rem;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    font-size: 0.875rem;
-    font-size: 0.9rem;
+    background-color: #484848;
+    font-size: 0.9375rem;
     font-weight: 300;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-    margin-top: 1rem;
     opacity: 95%;
-    padding: 0.5rem 1.4rem;
-    position: absolute;
-    right: 0;
     z-index: 100;
   }
   div p {
     color: #fff;
   }
-  div svg {
-    fill: currentColor;
-    height: 1rem;
-    margin-right: 0.5rem;
-    width: 1rem;
-  }
 </style>
 
 {#if visible && $notice}
-  <div role="alert" on:click={() => (visible = false)} transition:fade>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="black">
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-    <p>{$notice}</p>
+  <div
+    class="absolute bottom-4 cursor-pointer flex items-center justify-between m-2 p-4 rounded-md shadow-lg right-4"
+    role="alert"
+    out:fly={{ y: 300, duration: 2000 }}
+  >
+    {#if $notice.theme === NoticeThemes.Error}
+      <ErrorIcon />
+    {/if}
+
+    {#if $notice.theme === NoticeThemes.Information}
+      <InfoIcon />
+    {/if}
+
+    {#if $notice.theme === NoticeThemes.Ok}
+      <OkIcon />
+    {/if}
+
+    {#if $notice.theme === NoticeThemes.Warning}
+      <WarningIcon />
+    {/if}
+
+    <p class="ml-2 mr-4">{$notice.message}</p>
+
+    <div on:click={() => (visible = false)}>
+      <CloseIcon fill="#9C9C9C" height="16" width="16" />
+    </div>
   </div>
 {/if}

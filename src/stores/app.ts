@@ -1,9 +1,11 @@
 import { derived, writable } from 'svelte/store';
+import { NoticeThemes } from '../types/notice';
 
-// CONSTANTS
+// CONSTANTS ---
 export const mobileThreshold = 769;
+export const noticeDuration = 5000;
 
-// BASE STORES
+// BASE STORES ---
 
 // true when inner width is less than threshold
 export const isMobile = writable(false);
@@ -15,9 +17,12 @@ export const menu = writable(false);
 export const menuIcon = writable(true);
 
 // toasty message box
-export const notice = writable('Welcome to my Svelte app!');
+export const notice = writable({
+  message: 'Welcome to my cool new Svelte app!',
+  theme: NoticeThemes.Information,
+});
 
-// DERIVED STORES
+// DERIVED STORES ---
 
 // true when menu is requested at desktop width
 export const useDrawerMenu = derived([isMobile, menu], ([$isMobile, $menu]) => {

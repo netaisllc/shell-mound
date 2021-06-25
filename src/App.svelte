@@ -12,6 +12,13 @@
   $: event = _event;
 </script>
 
+<style>
+  :global(body) {
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow: hidden;
+  }
+</style>
+
 <EventManager {event} on:event={convey} />
 <Notice />
 <Tailwind />
