@@ -1,4 +1,7 @@
 <script lang="ts">
+  import Router from 'svelte-spa-router';
+
+  import { routes } from '../routes/app';
   import { useAdjustedDesktopWidth, useFullDesktopWidth } from '../stores/app';
 
   // Make nicer class name
@@ -20,4 +23,6 @@
   }
 </style>
 
-<div class="workspace bg-green-200 flex justify-center items-center" class:full class:adjusted>WORKSPACE</div>
+<div class="workspace bg-green-200 flex justify-center items-center" class:full class:adjusted>
+  <Router {routes} />
+</div>

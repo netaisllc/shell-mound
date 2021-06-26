@@ -1,7 +1,8 @@
 <script lang="ts">
   import BackIcon from '../icons/Back.svelte';
-  import { MenuHide } from '../lib/menu';
+  import Menu from './Menu.svelte';
   import { E } from '../lib/statics';
+  import { MenuHide } from '../lib/menu';
   import { createEventDispatcher } from 'svelte';
   import { isMobile, useDrawerMenu } from '../stores/app';
 
@@ -37,5 +38,7 @@
         <BackIcon fill="currentColor" />
       </div>
     </div>
+    <hr />
+    <Menu on:event />
   </div>
 {/if}

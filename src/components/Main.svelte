@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Drawer from './Drawer.svelte';
   import MobileMenu from './MobileMenu.svelte';
   import Workspace from './Workspace.svelte';

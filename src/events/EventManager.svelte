@@ -4,6 +4,8 @@
   import type { IApplicationEvent } from '../types/events';
   import { ApplicationEvents } from '../events/events';
 
+  import { E } from '../lib/statics';
+  import { MenuHide } from '../lib/menu';
   import { isMobile, menu, menuIcon, mobileThreshold, notice } from '../stores/app';
 
   const send = createEventDispatcher();
@@ -14,6 +16,13 @@
   $: setIsMobile(innerWidth);
 
   // Event handlers ---
+  const menuAction = () => {
+    // In mobile context, executing a menu action closes the menu.
+    if ($isMobile) {
+      send(E, MenuHide);
+    }
+  };
+
   const menuHide = () => {
     $menuIcon = true;
     $menu = false;
@@ -38,6 +47,7 @@
 
   // Map events to handlers ---
   const actions: Record<string, any> = {
+    [ApplicationEvents.MenuAction]: menuAction,
     [ApplicationEvents.MenuHide]: menuHide,
     [ApplicationEvents.MenuShow]: menuShow,
     [ApplicationEvents.NoticeHide]: noticeHide,

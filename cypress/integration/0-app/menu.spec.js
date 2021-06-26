@@ -61,6 +61,7 @@ describe('Menu actions', () => {
         cy.viewport(size, 'portrait');
         cy.get('[data-cy=menu-icon]').click();
         cy.get('[data-cy=mobile-menu]').should('be.visible');
+        cy.get('[data-cy=scrim]').should('exist');
         cy.get('[data-cy=drawer]').should('not.exist');
       });
 
@@ -69,6 +70,7 @@ describe('Menu actions', () => {
         cy.get('[data-cy=menu-icon]').click();
         cy.get('[data-cy=mobile-menu-close-icon]').click();
         cy.get('[data-cy=mobile-menu]').should('not.be.visible');
+        cy.get('[data-cy=scrim]').should('not.be.visible');
         cy.get('[data-cy=drawer]').should('not.exist');
       });
     });

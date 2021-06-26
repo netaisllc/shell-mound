@@ -1,5 +1,6 @@
 <script lang="ts">
   import CloseIcon from '../icons/Close.svelte';
+  import Menu from './Menu.svelte';
   import { MenuHide } from '../lib/menu';
   import { E } from '../lib/statics';
   import { createEventDispatcher } from 'svelte';
@@ -12,7 +13,8 @@
 </script>
 
 <style>
-  .menu {
+  .menu,
+  .scrim {
     display: none;
     height: 0;
     left: 0;
@@ -21,14 +23,27 @@
     transition: all 50ms ease-in-out;
     width: 0;
   }
+  .scrim {
+    margin: 0;
+  }
   .menu.visible {
     display: block;
     height: 80vh;
     width: 80vw;
+    z-index: 100;
+  }
+  .scrim.visible {
+    display: block;
+    height: 100vh;
+    opacity: 0.67;
+    width: 100vw;
+    z-index: 50;
   }
 </style>
 
 {#if $isMobile}
+  <div class="scrim fixed bg-gray-600" class:visible data-cy="scrim" />
+
   <div class="menu fixed bg-gray-800 rounded shadow-lg" class:visible data-cy="mobile-menu">
     <div class="flex justify-end">
       <div
@@ -39,5 +54,7 @@
         <CloseIcon fill="#ECECEC" />
       </div>
     </div>
+
+    <Menu on:event />
   </div>
 {/if}
