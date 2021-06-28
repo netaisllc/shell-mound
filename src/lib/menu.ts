@@ -1,14 +1,14 @@
 import { ApplicationEvents } from '../events/events';
-import type { IMenuEvent } from '../types/header';
+import type { ISimpleEvent } from '../types/header';
 
-export const MenuAction: IMenuEvent = {
+export const MenuAction: ISimpleEvent = {
   topic: ApplicationEvents.MenuAction,
 };
 
-export const MenuHide: IMenuEvent = {
+export const MenuHide: ISimpleEvent = {
   topic: ApplicationEvents.MenuHide,
 };
 
-export const MenuShow: IMenuEvent = {
+export const MenuShow: ISimpleEvent = {
   topic: ApplicationEvents.MenuShow,
 };

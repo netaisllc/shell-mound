@@ -16,6 +16,14 @@
   $: setIsMobile(innerWidth);
 
   // Event handlers ---
+  const account = () => {
+    console.log('Handle ACCOUNT event...');
+  };
+
+  const announcement = () => {
+    console.log('Handle ANNOUNCEMENT event...');
+  };
+
   const menuAction = () => {
     // In mobile context, executing a menu action closes the menu.
     if ($isMobile) {
@@ -47,6 +55,8 @@
 
   // Map events to handlers ---
   const actions: Record<string, any> = {
+    [ApplicationEvents.AccountToggle]: account,
+    [ApplicationEvents.AnnouncementToggle]: announcement,
     [ApplicationEvents.MenuAction]: menuAction,
     [ApplicationEvents.MenuHide]: menuHide,
     [ApplicationEvents.MenuShow]: menuShow,

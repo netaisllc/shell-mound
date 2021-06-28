@@ -1,3 +1,3 @@
-export interface IMenuEvent {
+export interface ISimpleEvent {
   topic: string;
 }
