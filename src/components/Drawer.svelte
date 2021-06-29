@@ -16,7 +16,7 @@
   .drawer {
     height: calc(100vh - 48px);
     top: 48;
-    transition: width 200ms ease-in-out;
+    transition: width 150ms ease-in-out;
     width: 0px;
   }
   .drawer.visible {

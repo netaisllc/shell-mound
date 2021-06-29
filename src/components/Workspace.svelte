@@ -13,7 +13,7 @@
   .workspace {
     font-size: 44pt;
     height: calc(100vh - 48px);
-    transition: width 250ms ease-in-out;
+    transition: width 150ms ease-in-out;
   }
   .adjusted {
     width: calc(100vw - 320px);
