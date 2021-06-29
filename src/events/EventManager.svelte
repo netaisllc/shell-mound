@@ -6,7 +6,7 @@
 
   import { E } from '../lib/statics';
   import { MenuHide } from '../lib/menu';
-  import { isMobile, menu, menuIcon, mobileThreshold, notice } from '../stores/app';
+  import { accountMenu, announcements, isMobile, menu, menuIcon, mobileThreshold, notice } from '../stores/app';
 
   const send = createEventDispatcher();
 
@@ -17,11 +17,21 @@
 
   // Event handlers ---
   const account = () => {
-    console.log('Handle ACCOUNT event...');
+    announcementHide();
+    $accountMenu = !$accountMenu;
+  };
+
+  const accountHide = () => {
+    $accountMenu = false;
   };
 
   const announcement = () => {
-    console.log('Handle ANNOUNCEMENT event...');
+    accountHide();
+    $announcements = !$announcements;
+  };
+
+  const announcementHide = () => {
+    $announcements = false;
   };
 
   const menuAction = () => {
@@ -32,11 +42,19 @@
   };
 
   const menuHide = () => {
+    // Hide other open surfaces
+    accountHide();
+    announcementHide();
+
     $menuIcon = true;
     $menu = false;
   };
 
   const menuShow = () => {
+    // Hide other open surfaces
+    accountHide();
+    announcementHide();
+
     $menuIcon = false;
     $menu = true;
   };

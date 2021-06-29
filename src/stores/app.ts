@@ -7,6 +7,12 @@ export const noticeDuration = 5000;
 
 // BASE STORES ---
 
+// true when Account is displayed
+export const accountMenu = writable(false);
+
+// true when Announcement panel is displayed
+export const announcements = writable(false);
+
 // true when inner width is less than threshold
 export const isMobile = writable(false);
 
